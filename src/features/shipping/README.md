@@ -1,0 +1,1 @@
+Shipping feature module placeholder.

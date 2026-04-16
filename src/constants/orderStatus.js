@@ -1,0 +1,28 @@
+export const ORDER_STATUS = {
+  PENDING_PAYMENT: 'pending_payment',
+  PAID: 'paid',
+  PENDING_PURCHASE: 'pending_purchase',
+  PURCHASED: 'purchased',
+  INBOUND_TO_WAREHOUSE: 'inbound_to_warehouse',
+  PACKED: 'packed',
+  SHIPPED: 'shipped',
+  IN_TRANSIT: 'in_transit',
+  DELIVERED: 'delivered',
+  COMPLETED: 'completed',
+  CANCELLED: 'cancelled',
+  REFUND_REQUESTED: 'refund_requested',
+  REFUNDED: 'refunded'
+};
+
+export const ORDER_STATUS_FLOW = [
+  ORDER_STATUS.PENDING_PAYMENT,
+  ORDER_STATUS.PAID,
+  ORDER_STATUS.PENDING_PURCHASE,
+  ORDER_STATUS.PURCHASED,
+  ORDER_STATUS.INBOUND_TO_WAREHOUSE,
+  ORDER_STATUS.PACKED,
+  ORDER_STATUS.SHIPPED,
+  ORDER_STATUS.IN_TRANSIT,
+  ORDER_STATUS.DELIVERED,
+  ORDER_STATUS.COMPLETED
+];
