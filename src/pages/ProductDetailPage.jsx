@@ -24,24 +24,30 @@ export default function ProductDetailPage() {
   return (
     <div className="page">
       <div className="detail">
-        <div>
+        <div className="card">
           <img className="main-image" src={mainImage} alt={product.name} />
           <div className="row">{product.images.map((img) => <img key={img} src={img} alt="thumb" className="thumb" onClick={() => setMainImage(img)} />)}</div>
         </div>
-        <div className="card">
+        <div className="card detail-panel">
+          <div className="tag">{product.tag}</div>
           <h1>{product.name}</h1>
           <p>{product.description}</p>
-          <p>¥{product.basePriceRMB} / {formatMoney(product.convertedPrices[currency], currency)}</p>
+          <div className="price">{formatMoney(product.convertedPrices[currency], currency)}</div>
+          <p className="price-sub">Reference China price: ¥{product.basePriceRMB}</p>
           <label>Color <select value={color} onChange={(e) => setColor(e.target.value)}>{product.options.color.map((v) => <option key={v}>{v}</option>)}</select></label>
           <label>Size <select value={size} onChange={(e) => setSize(e.target.value)}>{product.options.size.map((v) => <option key={v}>{v}</option>)}</select></label>
           <label>Quantity <input type="number" min="1" value={qty} onChange={(e) => setQty(Number(e.target.value))} /></label>
-          <p>Processing: 1–3 business days. Shipping time depends on selected shipping method.</p>
+          <div className="shipping-info">
+            <p><strong>Warehouse processing:</strong> 1–3 business days.</p>
+            <p><strong>Shipping ETA:</strong> depends on your selected method at checkout.</p>
+          </div>
           <div className="row"><button onClick={() => addToCart(product, qty, variant)}>Add to Cart</button><button className="secondary" onClick={() => { addToCart(product, qty, variant); navigate('/checkout'); }}>Buy Now</button></div>
         </div>
       </div>
-      <h2>Recommended Products</h2>
-      <div className="grid products">{rec.map((p) => <ProductCard key={p.id} product={p} onAdd={() => addToCart(p)} />)}</div>
-      <Link to="/shop">Back to Shop</Link>
+      <section>
+        <div className="section-head"><h2>Recommended Products</h2><Link className="link-btn" to="/shop">Back to Shop</Link></div>
+        <div className="grid products">{rec.map((p) => <ProductCard key={p.id} product={p} onAdd={() => addToCart(p)} />)}</div>
+      </section>
     </div>
   );
 }
