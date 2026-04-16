@@ -1,0 +1,1 @@
+Checkout feature module placeholder.
