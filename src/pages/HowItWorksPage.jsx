@@ -6,5 +6,13 @@ export default function HowItWorksPage() {
     'Warehouse inspects and repacks your goods',
     'International shipping with tracking updates'
   ];
-  return <div className="page"><h1>How It Works</h1><div className="grid">{steps.map((x) => <div className="card" key={x}>{x}</div>)}</div></div>;
+
+  return (
+    <div className="page">
+      <h1>How It Works</h1>
+      <div className="grid">
+        {steps.map((x, i) => <div className="card" key={x}><div className="tag">Step {i + 1}</div><h3>{x}</h3></div>)}
+      </div>
+    </div>
+  );
 }

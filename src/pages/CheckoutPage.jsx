@@ -42,7 +42,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="page">
-      <h1>Checkout</h1>
+      <div className="section-head"><h1>Checkout</h1><p className="muted">Secure your order with trusted shipping and payment details.</p></div>
       <div className="checkout">
         <form className="card" onSubmit={submit}>
           <h3>Shipping Information</h3>
@@ -51,16 +51,22 @@ export default function CheckoutPage() {
               {k === 'country' ? (
                 <select value={form[k]} onChange={(e) => setForm({ ...form, [k]: e.target.value })}><option>USA</option><option>UK</option><option>Canada</option><option>Australia</option></select>
               ) : (
-                <input value={form[k]} onChange={(e) => setForm({ ...form, [k]: e.target.value })} required={['fullName','email','address1','city','postalCode'].includes(k)} />
+                <input value={form[k]} onChange={(e) => setForm({ ...form, [k]: e.target.value })} required={['fullName', 'email', 'address1', 'city', 'postalCode'].includes(k)} />
               )}
             </label>
           ))}
-          <div className="card">
+          <div className="card inset">
             <h3>Shipping Method</h3>
-            {Object.values(SHIPPING_METHODS).map((x) => <label key={x.id}><input type="radio" checked={method === x.id} onChange={() => setMethod(x.id)} /> {x.label} ({x.eta})</label>)}
+            <div className="options-grid">
+              {Object.values(SHIPPING_METHODS).map((x) => (
+                <label key={x.id} className={`choice-card ${method === x.id ? 'active' : ''}`}>
+                  <input type="radio" checked={method === x.id} onChange={() => setMethod(x.id)} /> {x.label} ({x.eta})
+                </label>
+              ))}
+            </div>
           </div>
           <PaymentMethodSelector value={paymentMethod} onChange={setPaymentMethod} />
-          <label><input type="checkbox" checked={serviceFeeEnabled} onChange={(e) => setServiceFeeEnabled(e.target.checked)} /> Add optional service fee ($3)</label>
+          <label><input type="checkbox" checked={serviceFeeEnabled} onChange={(e) => setServiceFeeEnabled(e.target.checked)} /> Add optional premium handling service ($3)</label>
           <p>Orders are usually processed within 1–3 business days before international shipment.</p>
           <button type="submit">Place Order</button>
         </form>

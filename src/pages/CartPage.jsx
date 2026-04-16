@@ -10,8 +10,8 @@ export default function CartPage() {
 
   return (
     <div className="page">
-      <h1>Cart</h1>
-      {items.length === 0 ? <p>Your cart is empty.</p> : (
+      <div className="section-head"><h1>Cart</h1><p className="muted">Review products before checkout.</p></div>
+      {items.length === 0 ? <div className="card"><p>Your cart is empty.</p><Link className="btn" to="/shop">Browse products</Link></div> : (
         <>
           {items.map((item) => (
             <div className="card cart-item" key={`${item.id}-${item.variantKey}`}>
@@ -19,12 +19,17 @@ export default function CartPage() {
               <div>
                 <h3>{item.name}</h3>
                 <p>{formatMoney(item.prices[currency], currency)} each</p>
-                <input type="number" min="1" value={item.quantity} onChange={(e) => updateQty(item.id, item.variantKey, Number(e.target.value))} />
-                <button onClick={() => removeItem(item.id, item.variantKey)}>Remove</button>
+                <label>Quantity<input type="number" min="1" value={item.quantity} onChange={(e) => updateQty(item.id, item.variantKey, Number(e.target.value))} /></label>
               </div>
+              <button className="secondary" onClick={() => removeItem(item.id, item.variantKey)}>Remove</button>
             </div>
           ))}
-          <div className="card"><p>Subtotal: {formatMoney(subtotal, currency)}</p><p>Estimated total: {formatMoney(subtotal, currency)} + shipping</p><Link className="btn" to="/checkout">Proceed to Checkout</Link></div>
+          <div className="card">
+            <h3>Order Preview</h3>
+            <p>Subtotal: <strong>{formatMoney(subtotal, currency)}</strong></p>
+            <p>Estimated total: {formatMoney(subtotal, currency)} + shipping</p>
+            <Link className="btn" to="/checkout">Proceed to Checkout</Link>
+          </div>
         </>
       )}
     </div>

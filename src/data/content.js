@@ -1,8 +1,8 @@
 export const homeHighlights = [
-  'Direct sourcing from China',
-  'Worldwide shipping',
-  'Multiple delivery options',
-  'English-friendly support'
+  'Direct sourcing from verified Chinese marketplaces',
+  'Warehouse inspection before international dispatch',
+  'Multiple global shipping options with clear ETAs',
+  'English-first support for overseas shoppers'
 ];
 
 export const faqItems = [

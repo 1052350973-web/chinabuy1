@@ -12,10 +12,10 @@ export default function ShopPage() {
 
   return (
     <div className="page">
-      <h1>Shop</h1>
+      <div className="section-head"><h1>Shop</h1><p className="muted">Browse curated China-sourced products for global delivery.</p></div>
       <div className="toolbar card">
-        <input placeholder="Search products" value={keyword} onChange={(e) => setKeyword(e.target.value)} />
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>{categories.map((c) => <option key={c}>{c}</option>)}</select>
+        <label>Search Products<input placeholder="Search products" value={keyword} onChange={(e) => setKeyword(e.target.value)} /></label>
+        <label>Category<select value={category} onChange={(e) => setCategory(e.target.value)}>{categories.map((c) => <option key={c}>{c}</option>)}</select></label>
       </div>
       <div className="grid products">{list.map((p) => <ProductCard key={p.id} product={p} onAdd={() => addToCart(p)} />)}</div>
     </div>
